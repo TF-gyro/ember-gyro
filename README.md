@@ -1,9 +1,9 @@
-ember-tribe
+ember-gyro
 ==============================================================================
 
-An addon that connects EmberJS to Tribe API.
-Tribe is a project management framework by Postcode - https://github.com/tribe-framework/tribe
+This addon provides interface for Tribe Framework's APIs and a front-end CMS app to manage it  
 
+*Tribe is a project management framework by Postcode - https://github.com/tribe-framework/tribe*
 
 Compatibility
 ------------------------------------------------------------------------------
@@ -16,31 +16,35 @@ Installation
 ------------------------------------------------------------------------------
 
 1. Install
+```bash
+ember install ember-gyro
 ```
-ember install ember-tribe
-```
+  * Generate Gyro CMS (optional)  
+  `yes | ember g gyro-cms`
+  * To create Tribe/Gyro compatible Models, simply use:  
+  `ember g model <model-name>`
 
-2. Configure
-- Enter TRIBE_API_URL in .env file in Ember directory.
+2. Configure  
+copy `.env.sample` to `.env` and fill in the required values
 
 3. Sync Tribe's types.json with Ember Models
-```
+```bash
 php sync-types.php
 ```
-4. To serve front-end webapp from backend server and for using page-wise meta tags
+4. To serve frontend webapp with custom code injections for using page-wise meta tags
 - On local:
-```
+```bash
 php sync-dist.php
 ```
 - On server:
-```
-bash -c "$(wget --no-cache --no-cookie https://raw.githubusercontent.com/tribe-framework/tribe/master/install/ember.sh -O -)"
+```bash
+wget --no-cache --no-cookie https://raw.githubusercontent.com/tribe-framework/tribe/master/install/ember.sh -O -
 ```
 
-Usage
+<!-- Usage
 ------------------------------------------------------------------------------
 
-For more info visit https://postcodesolutions.com
+For more info visit https://postcodesolutions.com -->
 
 
 Contributing

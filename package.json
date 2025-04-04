@@ -1,13 +1,13 @@
 {
-  "name": "ember-tribe",
-  "version": "2.3.2",
-  "description": "The default blueprint for using Tribe within EmberJS.",
+  "name": "ember-gyro",
+  "version": "0.1.5",
+  "description": "Blueprint for Tribe integration and Gyro CMS",
   "keywords": [
     "ember-addon"
   ],
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "Truearch",
   "directories": {
     "doc": "doc",
     "test": "tests"

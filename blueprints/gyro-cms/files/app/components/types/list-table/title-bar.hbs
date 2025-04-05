@@ -20,16 +20,12 @@
 {{/if}}
 
 <div class="container-xxl">
-
   <h1
     class="text-capitalize text-center mt-5 px-0 display-2 mb-4
       {{if (eq @type.slug 'deleted_record') 'text-danger'}}"
-  >
-    {{@type.plural}}
-  </h1>
+  >{{@type.plural}}</h1>
 
-  <div class="col-lg-9 mx-auto px-0 mb-4 text-center">
-
+  <div class="col-lg-9 mx-auto mb-4 d-flex gap-2 justify-content-center">
     {{#if
       (and
         (not-eq this.type.currentType.slug "deleted_record")
@@ -43,14 +39,14 @@
         )
       }}
         <button
-          class="btn rounded-pill m-1 btn-outline-{{this.colormodes.inverseMode}}"
+          class="btn btn-outline-{{this.colormodes.inverseMode}}"
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#sampleDataPromptModal"
         ><i class="fa-solid fa-wand-magic-sparkles"></i> Sample Data</button>
       {{/if}}
       <button
-        class="btn rounded-pill m-1 btn-outline-{{this.colormodes.inverseMode}}"
+        class="btn btn-outline-{{this.colormodes.inverseMode}}"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#publicFormModal"
@@ -60,57 +56,19 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#csvImportExportModal"
-        class="btn rounded-pill m-1 btn-outline-{{this.colormodes.inverseMode}}"
+        class="btn btn-outline-{{this.colormodes.inverseMode}}"
       ><i class="fa-solid fa-file-csv"></i> Data Exchange</button>
-    {{/if}}
 
-    {{#if
-      (and
-        (not-eq this.type.currentType.slug "deleted_record")
-        (not-eq this.type.currentType.slug "file_record")
-        (not-eq this.type.currentType.slug "apikey_record")
-      )
-    }}
+      {{#if (not-eq this.type.currentType.slug "apikey_record")}}
       <button
         data-bs-target="#trackAPIModal"
         data-bs-toggle="modal"
-        class="btn rounded-pill m-1 btn-outline-{{this.colormodes.inverseMode}}"
+        class="btn btn-outline-{{this.colormodes.inverseMode}}"
         type="button"
       ><i class="fa-solid fa-code"></i> Track API</button>
-    {{/if}}
-  </div>
+      {{/if}}
 
-  <div class="row col-lg-9 mx-auto px-0 mb-4">
-    <div
-      class="order-3 order-lg-1 col-lg-3 px-0 col-12 my-1 d-flex justify-content-end"
-    >
-      <Types::ListTable::PageLengthSelector
-        @updatePageLength={{@updatePageLength}}
-        @currentPageLength={{@currentPageLength}}
-        @type={{@type}}
-      />
-    </div>
-
-    <div
-      class="order-2 order-lg-2 col-lg-5 px-0 col-12 my-1 d-flex justify-content-end"
-    >
-      <Types::ListTable::SearchBox
-        @type={{@type}}
-        @search={{@search}}
-        @clearSearch={{@clearSearch}}
-        @advancedSearch={{@advancedSearch}}
-        @showClearSearchButton={{@showClearSearchButton}}
-        @searchQuery={{@searchQuery}}
-        @advancedSearchQuery={{@advancedSearchQuery}}
-        @clearSearchQuery={{@clearSearchQuery}}
-        @changePageNumber={{@changePageNumber}}
-      />
-    </div>
-
-    {{#unless @type.readonly}}
-      <div
-        class="order-1 order-lg-3 col-lg-4 px-0 col-12 my-1 d-flex justify-content-end"
-      >
+      {{#unless @type.readonly}}
         {{#if
           (and (get @selectedRowIDs @type.slug) (not-eq @type.editable false))
         }}
@@ -125,11 +83,35 @@
         <button
           {{on "click" this.openNewModal}}
           type="button"
-          class="btn text-capitalize btn-primary fw-normal w-100 border border-1 border-{{this.colormodes.inverseMode}}
+          class="btn text-capitalize btn-{{this.colormodes.inverseMode}} fw-normal border border-1
             border-start-sm-1 border-start-md-0"
-        ><i class="fa-solid fa-plus"></i>&nbsp;New {{@type.name}}</button>
-      </div>
-    {{/unless}}
+        ><i class="fa-solid fa-plus"></i>&nbsp;New Data</button>
+      {{/unless}}
+    {{/if}}
+  </div>
+
+  <div class="row col-lg-9 mx-auto px-0 mb-4 gap-2">
+    <div class="order-2 order-lg-2 col-lg px-0 col-12 my-1 d-flex justify-content-end">
+      <Types::ListTable::PageLengthSelector
+        @updatePageLength={{@updatePageLength}}
+        @currentPageLength={{@currentPageLength}}
+        @type={{@type}}
+      />
+    </div>
+
+    <div class="order-1 order-lg-1 col-lg-9 px-0 col-12 my-1 d-flex justify-content-end">
+      <Types::ListTable::SearchBox
+        @type={{@type}}
+        @search={{@search}}
+        @clearSearch={{@clearSearch}}
+        @advancedSearch={{@advancedSearch}}
+        @showClearSearchButton={{@showClearSearchButton}}
+        @searchQuery={{@searchQuery}}
+        @advancedSearchQuery={{@advancedSearchQuery}}
+        @clearSearchQuery={{@clearSearchQuery}}
+        @changePageNumber={{@changePageNumber}}
+      />
+    </div>
 
     {{#if (eq @type.slug "deleted_record")}}
       <div
